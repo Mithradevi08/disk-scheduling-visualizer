@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Disk Scheduling Simulator</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 500px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #667eea;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5a67d8;
+}
+
+#result {
+    margin-top: 15px;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+canvas {
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Disk Scheduling Simulator</h2>
+
+<div class="field">
+<label>Request Queue</label>
+<input type="text" id="queue" placeholder="98 183 37 122 14">
+</div>
+
+<div class="field">
+<label>Initial Head Position</label>
+<input type="number" id="head" value="53">
+</div>
+
+<!-- ✅ ADDED DISK SIZE -->
+<div class="field">
+<label>Disk Size</label>
+<input type="number" id="size" placeholder="e.g., 200 (default 500)">
+</div>
+
+<div class="field">
+<label>Direction</label>
+<input type="text" id="direction" placeholder="forward / backward / previous head">
+</div>
+
+<div class="field">
+<label>Algorithm</label>
+<select id="algo">
+<option value="fcfs">FCFS</option>
+<option value="sstf">SSTF</option>
+<option value="scan">SCAN</option>
+<option value="cscan">C-SCAN</option>
+<option value="look">LOOK</option>
+<option value="clook">C-LOOK</option>
+</select>
+</div>
+
+<div class="buttons">
+<button onclick="run()">Run</button>
+<button onclick="compareAll()">Compare</button>
+</div>
+
+<div id="result"></div>
+
+<canvas id="chart" height="200"></canvas>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
