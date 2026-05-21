@@ -13,7 +13,19 @@ function getQueue() {
 
 function getDiskSize() {
     let size = parseInt(document.getElementById("size").value);
-    return (!isNaN(size) && size > 0) ? size : 500; // default
+
+    
+    if (!isNaN(size) && size > 0) {
+        return size;
+    }
+
+    
+    let queue = getQueue();
+    let head = parseInt(document.getElementById("head").value) || 0;
+
+    let maxInput = Math.max(head, ...queue);
+
+    return maxInput + 10;
 }
 
 
